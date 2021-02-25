@@ -80,4 +80,40 @@ public class AP1 {
     }
     return found;
   }
+
+  /**
+   * Given an array of scores, compute the int average of the first half and the second half,
+   * and return whichever is larger. We'll say that the second half begins at index length/2.
+   * The array length will be at least 2. To practice decomposition, write a separate helper
+   * method
+   *
+   * int average(int[] scores, int start, int end) { which computes the average of the elements
+   * between indexes start..end. Call your helper method twice to implement scoresAverage().
+   * Write your helper method after your scoresAverage() method in the JavaBat text area. Normally
+   * you would compute averages with doubles, but here we use ints so the expected results are
+   * exact.
+   *
+   * scoresAverage([2, 2, 4, 4]) → 4
+   * scoresAverage([4, 4, 4, 2, 2, 2]) → 4
+   * scoresAverage([3, 4, 5, 1, 2, 3]) → 4
+   *
+   * @param scores An array of at least length 2
+   * @return The max of the average of the first vs. second half of the array.
+   * @throws IllegalArgumentException If input array is less than 2 elements.
+   */
+  public int scoresAverage(int[] scores) throws IllegalArgumentException {
+    if (scores.length < 2) {
+      throw new IllegalArgumentException();
+    }
+    int middle = scores.length / 2;
+    return Math.max(average(scores, 0, middle - 1),
+        average(scores, middle, scores.length - 1));
+  }
+  private int average(int[] scores, int start, int end) {
+    int sum = 0;
+    for (int i = start; i <= end; i++) {
+      sum += scores[i];
+    }
+    return sum / (end - start + 1);
+  }
 }

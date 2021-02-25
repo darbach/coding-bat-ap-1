@@ -103,4 +103,33 @@ class AP1Test {
       assertEquals(actual, expected);
     }
   }
+
+  @Test
+  void scoresAverage() {
+    int[][] scoresAverageParams = {
+        {2, 2, 4, 4},
+        {4, 4, 4, 2, 2, 2},
+        {3, 4, 5, 1, 2, 3},
+        {5, 6},
+        {5, 4},
+        {5, 4, 5, 6, 2, 1, 2, 3},
+    };
+    int[] scoresAverageExpected = {
+        4,
+        4,
+        4,
+        6,
+        5,
+        5
+    };
+    System.out.println("\nRUNNING scoresAverage() TEST...");
+    for (int i = 0; i < scoresAverageParams.length; i++) {
+      String param = Arrays.toString(scoresAverageParams[i]);
+      int expected = scoresAverageExpected[i];
+      int actual = ap1.scoresAverage(scoresAverageParams[i]);
+      System.out.printf("PARAM, %s; EXPECTED, %s; ACTUAL %s%n",
+          param, expected, actual);
+      assertEquals(actual, expected);
+    }
+  }
 }
