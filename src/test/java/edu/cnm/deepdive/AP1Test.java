@@ -67,4 +67,40 @@ class AP1Test {
       assertEquals(actual, expected);
     }
   }
+
+
+  @Test
+  void scoresClump() {
+    int[][] scoresClumpParams = {
+        {3, 4, 5},
+        {3, 4, 6},
+        {1, 3, 5, 5},
+        {2, 4, 5, 6},
+        {2, 4, 5, 7},
+        {2, 4, 4, 7},
+        {3, 3, 6, 7, 9},
+        {3, 3, 7, 7, 9},
+        {4, 5, 8},
+    };
+    boolean[] scoresClumpExpected = {
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false
+    };
+    System.out.println("\nRUNNING scoresClump() TEST...");
+    for (int i = 0; i < scoresClumpParams.length; i++) {
+      String param = Arrays.toString(scoresClumpParams[i]);
+      boolean expected = scoresClumpExpected[i];
+      boolean actual = ap1.scoresClump(scoresClumpParams[i]);
+      System.out.printf("PARAM, %s; EXPECTED, %s; ACTUAL %s%n",
+          param, expected, actual);
+      assertEquals(actual, expected);
+    }
+  }
 }
