@@ -1,6 +1,8 @@
 package edu.cnm.deepdive;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * CodingBat's first set of Java exercises for AP CS medium problems.
@@ -154,5 +156,28 @@ public class AP1 {
    */
   public String[] wordsFront(String[] words, int n) {
     return Arrays.copyOfRange(words, 0, n);
+  }
+
+  /**
+   * Given an array of strings, return a new List (e.g. an ArrayList) where all the strings
+   * of the given length are omitted. See wordsWithout() below which is more difficult
+   * because it uses arrays.
+   *
+   * wordsWithoutList(["a", "bb", "b", "ccc"], 1) → ["bb", "ccc"]
+   * wordsWithoutList(["a", "bb", "b", "ccc"], 3) → ["a", "bb", "b"]
+   * wordsWithoutList(["a", "bb", "b", "ccc"], 4) → ["a", "bb", "b", "ccc"]
+   *
+   * @param words An array of strings.
+   * @param len Length to filter.
+   * @return A List with all the Strings of length len removed.
+   */
+  public List<String> wordsWithoutList(String[] words, int len) {
+    ArrayList<String> filtered = new ArrayList<>();
+    for (String s : words) {
+      if (s.length() != len) {
+        filtered.add(s);
+      }
+    }
+    return filtered;
   }
 }

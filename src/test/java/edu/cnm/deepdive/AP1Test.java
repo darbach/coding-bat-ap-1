@@ -3,6 +3,7 @@ package edu.cnm.deepdive;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
@@ -210,6 +211,50 @@ class AP1Test {
       String param = params[i].toString();
       String[] expected = expectedResults[i];
       String[] actual = ap1.wordsFront(params[i].words, params[i].length);
+//      System.out.printf("PARAMS: %s; EXPECTED, %s; ACTUAL %s%n", param,
+//          Arrays.toString(expected), Arrays.toString(actual));
+      assertArrayEquals(actual, expected);
+    }
+  }
+
+  @Test
+  void wordsWithoutList() {
+    class Param {
+
+      public final String[] words;
+      public final int length;
+
+      public Param(String[] words, int length) {
+        this.words = words;
+        this.length = length;
+      }
+
+      @Override
+      public String toString() {
+        return String.format("%s, %d", Arrays.toString(words), length);
+      }
+    }
+    Param[] params = {
+        new Param(new String[]{"a", "bb", "b", "ccc"}, 1),
+        new Param(new String[]{"a", "bb", "b", "ccc"}, 3),
+        new Param(new String[]{"a", "bb", "b", "ccc"}, 4),
+        new Param(new String[]{"xx", "yyy", "x", "yy", "z"}, 1),
+        new Param(new String[]{"xx", "yyy", "x", "yy", "z"}, 2)
+    };
+    String[][] expectedResults = {
+        {"bb", "ccc"},
+        {"a", "bb", "b"},
+        {"a", "bb", "b", "ccc"},
+        {"xx", "yyy", "yy"},
+        {"yyy", "x", "z"}
+    };
+//    System.out.println("\nRUNNING wordsFront() TEST...");
+    for (int i = 0; i < params.length; i++) {
+      String param = params[i].toString();
+      String[] expected = expectedResults[i];
+      List<String> actualList = ap1.wordsWithoutList(params[i].words, params[i].length);
+      String[] actual = new String[actualList.size()];
+      actual = actualList.toArray(actual);
 //      System.out.printf("PARAMS: %s; EXPECTED, %s; ACTUAL %s%n", param,
 //          Arrays.toString(expected), Arrays.toString(actual));
       assertArrayEquals(actual, expected);
