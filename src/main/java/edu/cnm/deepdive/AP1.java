@@ -1,5 +1,7 @@
 package edu.cnm.deepdive;
 
+import java.util.Arrays;
+
 /**
  * CodingBat's first set of Java exercises for AP CS medium problems.
  * <p>
@@ -136,5 +138,21 @@ public class AP1 {
       }
     }
     return count;
+  }
+
+  /**
+   * Given an array of strings, return a new array containing the first N strings. N will
+   * be in the range 1..length.
+   *
+   * wordsFront(["a", "b", "c", "d"], 1) → ["a"]
+   * wordsFront(["a", "b", "c", "d"], 2) → ["a", "b"]
+   * wordsFront(["a", "b", "c", "d"], 3) → ["a", "b", "c"]
+   *
+   * @param words Array of Strings.
+   * @param n Number of array elements to copy.
+   * @return A string array of n elements.
+   */
+  public String[] wordsFront(String[] words, int n) {
+    return Arrays.copyOfRange(words, 0, n);
   }
 }

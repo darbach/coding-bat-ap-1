@@ -28,13 +28,12 @@ class AP1Test {
         false,
         true
     };
-    System.out.println("\nRUNNING scoresIncreasing() TEST...");
+//    System.out.println("\nRUNNING scoresIncreasing() TEST...");
     for (int i = 0; i < siParams.length; i++) {
       String param = Arrays.toString(siParams[i]);
       boolean expected = siExpected[i];
       boolean actual = ap1.scoresIncreasing(siParams[i]);
-      System.out.printf("PARAM, %s; EXPECTED, %s; ACTUAL %s%n",
-          param, expected, actual);
+      //System.out.printf("PARAM, %s; EXPECTED, %s; ACTUAL %s%n", param, expected, actual);
       assertEquals(actual, expected);
     }
   }
@@ -57,13 +56,12 @@ class AP1Test {
         false,
         false,
     };
-    System.out.println("\nRUNNING scores100() TEST...");
+//    System.out.println("\nRUNNING scores100() TEST...");
     for (int i = 0; i < scores100Params.length; i++) {
       String param = Arrays.toString(scores100Params[i]);
       boolean expected = scores100Expected[i];
       boolean actual = ap1.scores100(scores100Params[i]);
-      System.out.printf("PARAM, %s; EXPECTED, %s; ACTUAL %s%n",
-          param, expected, actual);
+//      System.out.printf("PARAM, %s; EXPECTED, %s; ACTUAL %s%n", param, expected, actual);
       assertEquals(actual, expected);
     }
   }
@@ -93,13 +91,12 @@ class AP1Test {
         true,
         false
     };
-    System.out.println("\nRUNNING scoresClump() TEST...");
+//    System.out.println("\nRUNNING scoresClump() TEST...");
     for (int i = 0; i < scoresClumpParams.length; i++) {
       String param = Arrays.toString(scoresClumpParams[i]);
       boolean expected = scoresClumpExpected[i];
       boolean actual = ap1.scoresClump(scoresClumpParams[i]);
-      System.out.printf("PARAM, %s; EXPECTED, %s; ACTUAL %s%n",
-          param, expected, actual);
+//      System.out.printf("PARAM, %s; EXPECTED, %s; ACTUAL %s%n", param, expected, actual);
       assertEquals(actual, expected);
     }
   }
@@ -122,13 +119,12 @@ class AP1Test {
         5,
         5
     };
-    System.out.println("\nRUNNING scoresAverage() TEST...");
+//    System.out.println("\nRUNNING scoresAverage() TEST...");
     for (int i = 0; i < scoresAverageParams.length; i++) {
       String param = Arrays.toString(scoresAverageParams[i]);
       int expected = scoresAverageExpected[i];
       int actual = ap1.scoresAverage(scoresAverageParams[i]);
-      System.out.printf("PARAM, %s; EXPECTED, %s; ACTUAL %s%n",
-          param, expected, actual);
+//      System.out.printf("PARAM, %s; EXPECTED, %s; ACTUAL %s%n", param, expected, actual);
       assertEquals(actual, expected);
     }
   }
@@ -166,15 +162,57 @@ class AP1Test {
         2,
         1
     };
-    System.out.println("\nRUNNING wordsCount() TEST...");
+//    System.out.println("\nRUNNING wordsCount() TEST...");
     for (int i = 0; i < params.length; i++) {
       String param = params[i].toString();
       int expected = expectedResults[i];
       int actual = ap1.wordsCount(params[i].words, params[i].length);
-      System.out.printf("PARAMS: %s; EXPECTED, %s; ACTUAL %s%n",
-          param, expected, actual);
+//      System.out.printf("PARAMS: %s; EXPECTED, %s; ACTUAL %s%n", param, expected, actual);
       assertEquals(actual, expected);
     }
   }
 
+  @Test
+  void wordsFront() {
+    class Param {
+
+      public final String[] words;
+      public final int length;
+
+      public Param(String[] words, int length) {
+        this.words = words;
+        this.length = length;
+      }
+
+      @Override
+      public String toString() {
+        return String.format("%s, %d", Arrays.toString(words), length);
+      }
+    }
+    Param[] params = {
+        new Param(new String[]{"a", "b", "c", "d"}, 1),
+        new Param(new String[]{"a", "b", "c", "d"}, 2),
+        new Param(new String[]{"a", "b", "c", "d"}, 3),
+        new Param(new String[]{"a", "b", "c", "d"}, 4),
+        new Param(new String[]{"Hi", "There"}, 1),
+        new Param(new String[]{"Hi", "There"}, 2)
+    };
+    String[][] expectedResults = {
+        {"a"},
+        {"a", "b"},
+        {"a", "b", "c"},
+        {"a", "b", "c", "d"},
+        {"Hi"},
+        {"Hi", "There"}
+    };
+//    System.out.println("\nRUNNING wordsFront() TEST...");
+    for (int i = 0; i < params.length; i++) {
+      String param = params[i].toString();
+      String[] expected = expectedResults[i];
+      String[] actual = ap1.wordsFront(params[i].words, params[i].length);
+//      System.out.printf("PARAMS: %s; EXPECTED, %s; ACTUAL %s%n", param,
+//          Arrays.toString(expected), Arrays.toString(actual));
+      assertArrayEquals(actual, expected);
+    }
+  }
 }
